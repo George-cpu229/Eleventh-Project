@@ -1,17 +1,21 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
+import Preloader from "../../common/Preloader/Preloader";
+import ProfileStatus from "./ProfileStatusWithHooks"
+import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
-const ProfileInfo = () => {
+const ProfileInfo = ({profile, status, updateStatus}) => {
+    if (!profile) {
+        return <Preloader />
+    }
     return (
-    <div>
-      <div>
-      <img src='https://c4.wallpaperflare.com/wallpaper/500/442/354/outrun-vaporwave-hd-wallpaper-thumb.jpg'></img>
-      </div>
-      <div className={s.descriptionBlock}>
-         ava + descript.
-      </div>
+        <div>
+            <div className={s.descriptionBlock}>
+                <img src={profile.photos.large} />
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
+            </div>
         </div>
-        );
+    )
 }
 
 export default ProfileInfo;
